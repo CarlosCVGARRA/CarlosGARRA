@@ -4,33 +4,66 @@
   <meta charset="UTF-8" />
   <title>Codificador & Decodificador Protegido</title>
   <style>
+    /* === Variáveis CSS para fácil personalização das cores === */
+    :root {
+      --cor-texto-principal: #eee;
+      --cor-fundo-geral: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1470&q=80');
+      --cor-fundo-geral-pos-login: url('https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=1470&q=80');
+
+      --cor-fundo-header-footer: rgba(0, 0, 0, 0.6);
+      --cor-fundo-header-footer-pos-login: rgba(0, 0, 0, 0.7);
+
+      --cor-texto-header-footer: #eee;
+      --cor-texto-header-footer-pos-login: #0f0;
+
+      --cor-botao-fundo: #0f0;
+      --cor-botao-texto: #111;
+
+      --cor-fundo-login: rgba(0,0,0,0.75);
+      --cor-sombra-login: rgba(0,255,0,0.4);
+
+      --cor-fundo-app: rgba(0,0,0,0.8);
+      --cor-sombra-app: rgba(0,255,0,0.5);
+
+      --cor-fundo-side-panel: rgba(0,0,0,0.6);
+      --cor-texto-side-panel: #0f0;
+      --cor-sombra-side-panel: rgba(0,255,0,0.5);
+
+      --cor-textarea-fundo: #222;
+      --cor-textarea-texto: #0f0;
+
+      --cor-mensagem-sucesso: #0f0;
+      --cor-mensagem-erro: #f44;
+    }
+
     body {
       font-family: Arial, sans-serif;
       margin: 0;
       height: 100vh;
 
-      background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1470&q=80') no-repeat center center fixed;
+      background: var(--cor-fundo-geral) no-repeat center center fixed;
       background-size: cover;
 
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       align-items: center;
-      color: #eee;
+      color: var(--cor-texto-principal);
       box-sizing: border-box;
     }
 
     header, footer {
       width: 100%;
       text-align: center;
-      background-color: rgba(0, 0, 0, 0.6);
+      background-color: var(--cor-fundo-header-footer);
       padding: 10px;
       font-weight: bold;
       box-sizing: border-box;
+      color: var(--cor-texto-header-footer);
     }
 
     footer a, #app-footer a {
-      color: #0f0;
+      color: var(--cor-botao-fundo);
       text-decoration: underline;
       cursor: pointer;
       margin: 0 6px;
@@ -38,13 +71,13 @@
 
     /* Tela inicial (login) com imagens à esquerda e direita */
     #login {
-      background-color: rgba(0,0,0,0.75);
+      background-color: var(--cor-fundo-login);
       border-radius: 12px;
       max-width: 900px;
       width: 90vw;
       padding: 30px;
       margin: auto;
-      box-shadow: 0 0 15px rgba(0,255,0,0.4);
+      box-shadow: 0 0 15px var(--cor-sombra-login);
 
       display: flex;
       align-items: center;
@@ -58,14 +91,14 @@
       height: 267px; /* altura proporcional 9:16 */
       object-fit: cover;
       border-radius: 15px;
-      box-shadow: 0 0 15px rgba(0,255,0,0.6);
+      box-shadow: 0 0 15px var(--cor-sombra-login);
       flex-shrink: 0;
     }
 
     #login .login-area {
       flex: 1;
       text-align: center;
-      color: #eee;
+      color: var(--cor-texto-principal);
     }
 
     #login h2 {
@@ -80,22 +113,32 @@
       width: 100%;
       max-width: 300px;
       box-sizing: border-box;
+      color: var(--cor-textarea-texto);
+      background-color: var(--cor-textarea-fundo);
     }
 
     #login button {
-      background-color: #0f0;
+      background-color: var(--cor-botao-fundo);
       font-weight: bold;
       padding: 12px 30px;
       font-size: 18px;
       border-radius: 6px;
       cursor: pointer;
       margin-top: 15px;
+      color: var(--cor-botao-texto);
+      border: none;
+      transition: background-color 0.3s ease;
+    }
+
+    #login button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
     }
 
     #msg-senha {
       font-weight: bold;
       min-height: 20px;
-      color: #f44;
+      color: var(--cor-mensagem-erro);
       margin-top: 10px;
     }
 
@@ -107,12 +150,12 @@
     }
 
     #app-header, #app-footer {
-      background-color: rgba(0, 0, 0, 0.7);
+      background-color: var(--cor-fundo-header-footer-pos-login);
       padding: 12px;
       text-align: center;
       font-size: 20px;
       font-weight: bold;
-      color: #0f0;
+      color: var(--cor-texto-header-footer-pos-login);
       box-sizing: border-box;
     }
 
@@ -125,17 +168,17 @@
     }
 
     .side-panel {
-      background-color: rgba(0,0,0,0.6);
+      background-color: var(--cor-fundo-side-panel);
       border-radius: 10px;
       padding: 15px;
-      color: #0f0;
+      color: var(--cor-texto-side-panel);
       font-size: 14px;
       display: flex;
       flex-direction: column;
       align-items: center;
       width: 20%;
       box-sizing: border-box;
-      box-shadow: 0 0 10px rgba(0,255,0,0.5);
+      box-shadow: 0 0 10px var(--cor-sombra-side-panel);
       gap: 10px;
     }
 
@@ -146,7 +189,7 @@
       width: 100%;
       min-height: 50px;
       box-sizing: border-box;
-      color: #0f0;
+      color: var(--cor-texto-side-panel);
       font-size: 14px;
       white-space: pre-wrap;
       overflow-y: auto;
@@ -162,10 +205,10 @@
     #app {
       flex: 1;
       padding: 20px;
-      background-color: rgba(0,0,0,0.8);
+      background-color: var(--cor-fundo-app);
       border-radius: 10px;
-      box-shadow: 0 0 25px rgba(0,255,0,0.5);
-      color: #0f0;
+      box-shadow: 0 0 25px var(--cor-sombra-app);
+      color: var(--cor-texto-side-panel);
       font-family: monospace;
       display: flex;
       flex-direction: column;
@@ -182,22 +225,29 @@
       min-height: 150px;
       font-size: 18px;
       padding: 10px;
-      background: #222;
-      color: #0f0;
+      background: var(--cor-textarea-fundo);
+      color: var(--cor-textarea-texto);
       border: none;
       border-radius: 6px;
       resize: vertical;
+      font-family: monospace;
     }
 
     .app-btn {
       padding: 10px 20px;
       margin: 10px 5px 0 0;
       font-size: 16px;
-      background: #0f0;
+      background: var(--cor-botao-fundo);
       border-radius: 6px;
       cursor: pointer;
-      color: #111;
+      color: var(--cor-botao-texto);
       font-weight: bold;
+      border: none;
+      transition: background-color 0.3s ease;
+    }
+
+    .app-btn:hover {
+      background-color: #0c0;
     }
 
     #botoes {
@@ -211,6 +261,7 @@
       margin-top: 10px;
       height: 24px;
       font-weight: bold;
+      color: var(--cor-mensagem-sucesso);
     }
 
     @media (max-width: 800px) {
@@ -354,7 +405,7 @@
         appContainer.style.display = "flex";
 
         // Trocar imagem de fundo após login
-        document.body.style.backgroundImage = "url('https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=1470&q=80')";
+        document.body.style.backgroundImage = "var(--cor-fundo-geral-pos-login)";
         document.body.style.backgroundSize = "cover";
 
         normalTextarea.focus();
