@@ -5,49 +5,90 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Codificador Protegido - Mobile</title>
   <style>
+    /* === Variáveis CSS para cores e imagens de fundo === */
+    :root {
+      --bg-image-login: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1470&q=80');
+      --bg-image-logged: url('https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=1470&q=80');
+      
+      --text-color: #eee;               /* cor padrão dos textos */
+      --text-color-green: #0f0;         /* verde usado para destaques */
+      --text-color-error: #f44;         /* vermelho para erro */
+      
+      --bg-overlay-login: rgba(0,0,0,0.75);    /* fundo escuro translúcido para o login */
+      --bg-overlay-panel: rgba(0,0,0,0.6);     /* fundo dos painéis laterais e links */
+      --bg-overlay-app: rgba(0,0,0,0.8);       /* fundo da área principal do app */
+      --bg-header-footer: rgba(0,0,0,0.7);     /* fundo header e footer */
+      
+      --btn-bg: #0f0;                      /* cor de fundo dos botões */
+      --btn-text-color: #111;              /* cor do texto dos botões */
+      
+      --shadow-green: rgba(0,255,0,0.6);  /* sombra verde para destaque */
+    }
+
+    /* === Estilo geral da página === */
     body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      min-height: 100vh;
-      background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1470&q=80') no-repeat center center fixed;
-      background-size: cover;
-      color: #eee;
+      font-family: Arial, sans-serif;       /* fonte padrão */
+      margin: 0;                            /* sem margem */
+      min-height: 100vh;                   /* altura mínima 100% da tela */
+      background: var(--bg-image-login) no-repeat center center fixed; /* imagem de fundo */
+      background-size: cover;              /* cobre toda a área */
+      color: var(--text-color);            /* cor do texto */
       display: flex;
       flex-direction: column;
     }
+
+    /* === Header e Footer === */
     header, footer {
       width: 100%;
       text-align: center;
-      background-color: rgba(0,0,0,0.7);
+      background-color: var(--bg-header-footer);
       padding: 12px;
       font-weight: bold;
       box-sizing: border-box;
+      border-radius: 0 0 10px 10px; /* arredondar só na parte de baixo */
+      color: var(--text-color);
     }
+
+    /* === Tela de login === */
     #login {
-      background-color: rgba(0,0,0,0.75);
+      background-color: var(--bg-overlay-login);
       margin: 20px auto;
       border-radius: 12px;
       max-width: 350px;
       width: 90vw;
       padding: 25px 20px;
       box-sizing: border-box;
-      box-shadow: 0 0 15px rgba(0,255,0,0.6);
+      box-shadow: 0 0 15px var(--shadow-green);
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 20px;
     }
+
+    /* Imagens na tela de login (esquerda e direita) */
+    #login-images {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 350px;
+      gap: 15px;
+    }
+
     #login img {
       width: 140px;
       height: 250px;
       border-radius: 15px;
       object-fit: cover;
-      box-shadow: 0 0 10px rgba(0,255,0,0.6);
+      box-shadow: 0 0 10px var(--shadow-green);
     }
+
+    /* Título na tela de login */
     #login h2 {
       margin: 0;
       text-align: center;
     }
+
+    /* Campo senha */
     #senha {
       font-size: 22px;
       padding: 14px;
@@ -59,8 +100,10 @@
       text-align: center;
       letter-spacing: 0.1em;
     }
+
+    /* Botão entrar */
     #btnEntrar {
-      background-color: #0f0;
+      background-color: var(--btn-bg);
       font-weight: bold;
       font-size: 20px;
       padding: 14px;
@@ -70,26 +113,26 @@
       max-width: 280px;
       box-sizing: border-box;
       transition: background-color 0.3s ease;
+      color: var(--btn-text-color);
+      border: none;
     }
+
     #btnEntrar:disabled {
       background-color: #444;
       cursor: not-allowed;
     }
+
+    /* Mensagem de erro senha */
     #msg-senha {
       min-height: 24px;
-      color: #f44;
+      color: var(--text-color-error);
       font-weight: bold;
       text-align: center;
     }
-    #login-images {
-      display: flex;
-      justify-content: space-between;
-      width: 100%;
-      max-width: 350px;
-      gap: 15px;
-    }
+
+    /* Container principal do app (após login) */
     #app-container {
-      display: none;
+      display: none; /* fica oculto até login */
       flex-direction: column;
       flex: 1;
       max-width: 400px;
@@ -97,72 +140,89 @@
       width: 90vw;
       box-sizing: border-box;
     }
+
+    /* Header e Footer do app */
     #app-header, #app-footer {
-      background-color: rgba(0,0,0,0.7);
+      background-color: var(--bg-header-footer);
       padding: 12px;
       text-align: center;
       font-size: 20px;
       font-weight: bold;
-      color: #0f0;
+      color: var(--text-color-green);
       border-radius: 10px;
     }
+
+    /* Área principal do app */
     #app {
-      background-color: rgba(0,0,0,0.8);
+      background-color: var(--bg-overlay-app);
       border-radius: 10px;
       box-shadow: 0 0 25px rgba(0,255,0,0.5);
       padding: 15px;
-      color: #0f0;
+      color: var(--text-color-green);
       font-family: monospace;
       display: flex;
       flex-direction: column;
       gap: 12px;
       box-sizing: border-box;
     }
+
+    /* Labels dos campos */
     label {
       font-weight: bold;
       font-size: 16px;
     }
+
+    /* Áreas de texto */
     textarea {
       width: 100%;
       min-height: 120px;
       font-size: 18px;
       padding: 10px;
       background: #222;
-      color: #0f0;
+      color: var(--text-color-green);
       border: none;
       border-radius: 8px;
       resize: vertical;
     }
+
+    /* Container dos botões */
     #botoes {
       display: flex;
       flex-direction: column;
       gap: 12px;
       margin-top: 10px;
     }
+
+    /* Botões do app */
     .app-btn {
-      background: #0f0;
-      color: #111;
+      background: var(--btn-bg);
+      color: var(--btn-text-color);
       font-weight: bold;
       font-size: 18px;
       padding: 14px;
       border-radius: 8px;
       cursor: pointer;
       border: none;
+      transition: background-color 0.2s ease;
     }
     .app-btn:active {
       background: #0c0;
     }
+
+    /* Mensagem temporária */
     #mensagem {
       min-height: 24px;
       font-weight: bold;
       text-align: center;
       margin-top: 10px;
     }
+
+    /* Painéis laterais de dicas */
     .side-panel {
-      background-color: rgba(0,0,0,0.6);
+      background-color: var(--bg-overlay-panel);
       border-radius: 10px;
       padding: 12px;
-      color: #0f0;
+      color: var(--text-color-green);
       font-size: 14px;
       margin-top: 15px;
       box-sizing: border-box;
@@ -177,25 +237,32 @@
       object-fit: cover;
       margin-top: 10px;
     }
+
+    /* Links sociais estilo botão vertical */
     .social-links {
       display: flex;
       flex-direction: column;
       gap: 10px;
       margin-top: 20px;
       padding: 10px;
-      background-color: rgba(0, 0, 0, 0.6);
+      background-color: var(--bg-overlay-panel);
       border-radius: 10px;
       max-width: 350px;
       text-align: center;
     }
     .social-links a {
-      color: #0f0;
+      color: var(--text-color-green);
       text-decoration: none;
       font-weight: bold;
       font-size: 18px;
       padding: 10px;
       background: #111;
       border-radius: 8px;
+      display: block;
+      transition: background-color 0.3s ease;
+    }
+    .social-links a:hover {
+      background: #222;
     }
   </style>
 </head>
@@ -204,8 +271,8 @@
 
   <div id="login">
     <div id="login-images">
-      <img src="https://images.unsplash.com/photo-1512499617640-c2f9998712d5?auto=format&fit=crop&w=300&q=80" />
-      <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=300&q=80" />
+      <img src="https://images.unsplash.com/photo-1512499617640-c2f9998712d5?auto=format&fit=crop&w=300&q=80" alt="Imagem esquerda" />
+      <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=300&q=80" alt="Imagem direita" />
     </div>
     <h2>Digite a senha para acessar.</h2>
     <input id="senha" type="password" placeholder="Senha" />
@@ -213,10 +280,10 @@
     <div id="msg-senha"></div>
 
     <div class="social-links">
-      <a href="https://wa.me/SEUNUMERO" target="_blank">📲 WhatsApp</a>
-      <a href="https://youtube.com/SEUCANAL" target="_blank">▶️ YouTube</a>
-      <a href="https://instagram.com/SEUINSTAGRAM" target="_blank">📸 Instagram</a>
-      <a href="https://discord.gg/SEULINK" target="_blank">🟣 Discord</a>
+      <a href="https://wa.me/SEUNUMERO" target="_blank" rel="noopener noreferrer">📲 WhatsApp</a>
+      <a href="https://youtube.com/SEUCANAL" target="_blank" rel="noopener noreferrer">▶️ YouTube</a>
+      <a href="https://instagram.com/SEUINSTAGRAM" target="_blank" rel="noopener noreferrer">📸 Instagram</a>
+      <a href="https://discord.gg/SEULINK" target="_blank" rel="noopener noreferrer">🟣 Discord</a>
     </div>
   </div>
 
@@ -232,7 +299,7 @@
         Dica 3: Mantenha seu texto simples e claro.<br>
         Dica 4: Não use números se possível.
       </div>
-      <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=400&q=80" />
+      <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=400&q=80" alt="Dicas imagem" />
     </div>
 
     <div id="app">
@@ -260,14 +327,14 @@
         Dica C: Revise o texto antes de codificar.<br>
         Dica D: Evite copiar texto com espaços extras.
       </div>
-      <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=400&q=80" />
+      <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=400&q=80" alt="Dicas imagem 2" />
     </div>
 
     <div class="social-links">
-      <a href="https://wa.me/SEUNUMERO" target="_blank">📲 WhatsApp</a>
-      <a href="https://youtube.com/SEUCANAL" target="_blank">▶️ YouTube</a>
-      <a href="https://instagram.com/SEUINSTAGRAM" target="_blank">📸 Instagram</a>
-      <a href="https://discord.gg/SEULINK" target="_blank">🟣 Discord</a>
+      <a href="https://wa.me/SEUNUMERO" target="_blank" rel="noopener noreferrer">📲 WhatsApp</a>
+      <a href="https://youtube.com/SEUCANAL" target="_blank" rel="noopener noreferrer">▶️ YouTube</a>
+      <a href="https://instagram.com/SEUINSTAGRAM" target="_blank" rel="noopener noreferrer">📸 Instagram</a>
+      <a href="https://discord.gg/SEULINK" target="_blank" rel="noopener noreferrer">🟣 Discord</a>
     </div>
 
     <div id="app-footer">© 2025 Sistema protegido por senha</div>
@@ -297,7 +364,7 @@
       if (senhaInput.value === senhaCorreta) {
         loginDiv.style.display = "none";
         appContainer.style.display = "flex";
-        document.body.style.backgroundImage = "url('https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=1470&q=80')";
+        document.body.style.backgroundImage = "var(--bg-image-logged)";
         normalTextarea.focus();
       } else {
         document.getElementById("msg-senha").textContent = "Senha incorreta!";
