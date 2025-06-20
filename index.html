@@ -35,9 +35,13 @@
       text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
     }
     a {
+      /* Largura fixa menor para os botões */
       display: inline-block;
+      width: 160px; /* largura menor, pode mudar aqui */
       margin: 10px 15px;
-      padding: 15px 30px;
+      padding: 15px 0; /* mantém padding vertical e remove horizontal para ajuste */
+      
+      /* Cor do fundo - para mudar, altere a variável abaixo */
       background-color: rgba(0, 173, 181, 0.8);
       color: white;
       text-decoration: none;
@@ -46,12 +50,40 @@
       font-size: 1rem;
       transition: background-color 0.3s;
       box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+      text-align: center; /* garante o texto centralizado */
     }
     a:hover,
     a:focus {
+      /* Cor de fundo quando o botão está em hover/foco */
       background-color: rgba(2, 136, 145, 0.9);
       outline: none;
       box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    }
+
+    /* === SEÇÃO PARA MUDAR AS CORES DOS BOTÕES ===
+       Para alterar as cores dos botões, mude aqui:
+
+       --btn-bg: cor de fundo normal (RGBA ou HEX)
+       --btn-bg-hover: cor de fundo quando o mouse está em cima
+
+       Exemplo:
+       --btn-bg: rgba(255, 0, 0, 0.8); // vermelho translúcido
+       --btn-bg-hover: rgba(200, 0, 0, 0.9);
+
+       Para aplicar, substitua os valores abaixo e o CSS dos links atualizará automaticamente.
+    */
+
+    :root {
+      --btn-bg: rgba(0, 173, 181, 0.8);
+      --btn-bg-hover: rgba(2, 136, 145, 0.9);
+    }
+
+    a {
+      background-color: var(--btn-bg);
+    }
+    a:hover,
+    a:focus {
+      background-color: var(--btn-bg-hover);
     }
   </style>
 </head>
