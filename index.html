@@ -99,31 +99,6 @@
       box-shadow: 0 4px 10px rgba(0,0,0,0.5); /* sombra mais forte */
     }
 
-    /* === Caixas laterais (posicionadas fixas) === */
-    .caixa-lateral {
-      position: absolute; /* posição fixa na tela */
-      top: 20%; /* posiciona a 20% do topo da tela */
-      width: 200px; /* largura fixa */
-      padding: 10px; /* espaçamento interno */
-      background-color: var(--caixa-bg); /* fundo semitransparente */
-      border: 1px solid var(--caixa-border); /* borda semitransparente */
-      border-radius: 10px; /* cantos arredondados */
-      font-size: 0.95rem; /* tamanho da fonte */
-      text-align: left; /* alinhamento do texto */
-      color: var(--caixa-text-color); /* cor do texto */
-      user-select: text; /* permite seleção do texto */
-    }
-
-    /* Posicionamento da caixa esquerda */
-    .esquerda {
-      left: 20px;
-    }
-
-    /* Posicionamento da caixa direita */
-    .direita {
-      right: 20px;
-    }
-
     /* === Caixa inferior do rodapé === */
     .caixa-rodape {
       position: absolute; /* fixa em relação à tela */
@@ -142,17 +117,8 @@
   </style>
 </head>
 <body>
-  <!-- Caixa esquerda -->
-  <div class="caixa-lateral esquerda">
-    <p>📝 Mensagem lateral esquerda<br>
-    (edite esse texto no HTML)</p>
-  </div>
-
-  <!-- Caixa direita -->
-  <div class="caixa-lateral direita">
-    <p>📌 Informações úteis<br>
-    (editável no código)</p>
-  </div>
+  <!-- REMOVIDO: Caixa esquerda -->
+  <!-- REMOVIDO: Caixa direita -->
 
   <!-- Caixa inferior (agora mais alta) -->
   <div class="caixa-rodape">
