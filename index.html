@@ -16,37 +16,29 @@
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      justify-content: flex-start;
       backdrop-filter: brightness(0.6);
+      position: relative;
     }
+
+    /* Imagem de topo (ajustada com nova URL) */
     img {
       max-width: 200px;
-      margin-bottom: 20px;
+      margin: 20px auto 10px;
       border-radius: 12px;
     }
+
     h1 {
-      margin-bottom: 20px;
+      margin-bottom: 10px;
       font-size: 2.5rem;
       text-shadow: 1px 1px 5px rgba(0,0,0,0.7);
     }
+
     p {
       font-size: 1.2rem;
-      margin-bottom: 15px;
+      margin-bottom: 10px;
       text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
     }
-
-    /* === SEÇÃO PARA MUDAR AS CORES DOS BOTÕES ===
-       Para alterar as cores dos botões, mude aqui:
-
-       --btn-bg: cor de fundo normal (RGBA ou HEX)
-       --btn-bg-hover: cor de fundo quando o mouse está em cima
-
-       Exemplo:
-       --btn-bg: rgba(255, 0, 0, 0.8); // vermelho translúcido
-       --btn-bg-hover: rgba(200, 0, 0, 0.9);
-
-       Para aplicar, substitua os valores abaixo e o CSS dos links atualizará automaticamente.
-    */
 
     :root {
       --btn-bg: rgba(0, 173, 181, 0.8);
@@ -54,11 +46,10 @@
     }
 
     a {
-      /* Botões com 25% da largura da tela, centralizados */
       display: block;
       width: 25%;
-      min-width: 180px; /* garante tamanho mínimo em telas pequenas */
-      max-width: 300px; /* limite em telas grandes */
+      min-width: 180px;
+      max-width: 300px;
       margin: 10px auto;
       padding: 15px 0;
       background-color: var(--btn-bg);
@@ -78,10 +69,70 @@
       outline: none;
       box-shadow: 0 4px 10px rgba(0,0,0,0.5);
     }
+
+    /* === Caixas laterais === */
+    .caixa-lateral {
+      position: absolute;
+      top: 20%;
+      width: 200px;
+      padding: 10px;
+      background-color: rgba(0,0,0,0.5);
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 10px;
+      font-size: 0.95rem;
+      text-align: left;
+    }
+
+    .esquerda {
+      left: 20px;
+    }
+
+    .direita {
+      right: 20px;
+    }
+
+    /* === Caixa inferior (ajustada para subir ~3cm) === */
+    .caixa-rodape {
+      position: absolute;
+      bottom: 30px; /* antes era 0, agora subiu 30px */
+      left: 0;
+      width: 100%;
+      padding: 10px 30px;
+      background-color: rgba(0, 0, 0, 0.6);
+      border-top: 1px solid rgba(255,255,255,0.2);
+      font-size: 1rem;
+      text-align: center;
+      box-sizing: border-box;
+    }
+
+    /* Explicação:
+       - "bottom: 30px" = subiu a caixa 3cm do rodapé
+       - "width: 100%" = cobre a tela inteira na horizontal
+       - "padding" = mantém espaço interno e evita encostar
+    */
   </style>
 </head>
 <body>
-  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Bald_Eagle_Portrait.jpg/320px-Bald_Eagle_Portrait.jpg" alt="Águia" />
+  <!-- Caixa esquerda -->
+  <div class="caixa-lateral esquerda">
+    <p>📝 Mensagem lateral esquerda<br>
+    (edite esse texto no HTML)</p>
+  </div>
+
+  <!-- Caixa direita -->
+  <div class="caixa-lateral direita">
+    <p>📌 Informações úteis<br>
+    (editável no código)</p>
+  </div>
+
+  <!-- Caixa inferior (agora mais alta) -->
+  <div class="caixa-rodape">
+    📣 Aviso importante aqui no rodapé — edite essa mensagem direto no HTML.
+  </div>
+
+  <!-- Imagem de topo (substituída só para teste) -->
+  <img src="https://images.unsplash.com/photo-1587614297722-ec3c7c0169af?auto=format&fit=crop&w=320&q=80" alt="Imagem de teste" />
+
   <h1>Mensagem em Código</h1>
   <p>Escolha a versão:</p>
   <a href="mensagempc.html">Versão para PC</a>
