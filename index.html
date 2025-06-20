@@ -34,31 +34,6 @@
       margin-bottom: 15px;
       text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
     }
-    a {
-      /* Largura fixa menor para os botões */
-      display: inline-block;
-      width: 160px; /* largura menor, pode mudar aqui */
-      margin: 10px 15px;
-      padding: 15px 0; /* mantém padding vertical e remove horizontal para ajuste */
-      
-      /* Cor do fundo - para mudar, altere a variável abaixo */
-      background-color: rgba(0, 173, 181, 0.8);
-      color: white;
-      text-decoration: none;
-      border-radius: 8px;
-      font-weight: bold;
-      font-size: 1rem;
-      transition: background-color 0.3s;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-      text-align: center; /* garante o texto centralizado */
-    }
-    a:hover,
-    a:focus {
-      /* Cor de fundo quando o botão está em hover/foco */
-      background-color: rgba(2, 136, 145, 0.9);
-      outline: none;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-    }
 
     /* === SEÇÃO PARA MUDAR AS CORES DOS BOTÕES ===
        Para alterar as cores dos botões, mude aqui:
@@ -79,11 +54,29 @@
     }
 
     a {
+      /* Botões com 25% da largura da tela, centralizados */
+      display: block;
+      width: 25%;
+      min-width: 180px; /* garante tamanho mínimo em telas pequenas */
+      max-width: 300px; /* limite em telas grandes */
+      margin: 10px auto;
+      padding: 15px 0;
       background-color: var(--btn-bg);
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: bold;
+      font-size: 1rem;
+      transition: background-color 0.3s;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+      text-align: center;
     }
+
     a:hover,
     a:focus {
       background-color: var(--btn-bg-hover);
+      outline: none;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
     }
   </style>
 </head>
