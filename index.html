@@ -5,111 +5,140 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Carlos GARRA  Portal Oficial</title>
   <style>
+    /* === Variáveis CSS para personalização fácil === */
+    :root {
+      /* Fundo */
+      --bg-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1350&q=80');
+      --bg-color-overlay: rgba(0,0,0,0.4); /* se quiser cor de fundo sem imagem */
+      
+      /* Cores de texto */
+      --text-color: white;
+      --text-shadow-color: rgba(0,0,0,0.7);
+      --text-shadow-color-p: rgba(0,0,0,0.6);
+
+      /* Cores dos botões */
+      --btn-bg: rgba(0, 173, 181, 0.8);
+      --btn-bg-hover: rgba(2, 136, 145, 0.9);
+      --btn-text-color: white;
+
+      /* Cores das caixas laterais */
+      --caixa-bg: rgba(0,0,0,0.5);
+      --caixa-border: rgba(255,255,255,0.3);
+      --caixa-text-color: white;
+
+      /* Cor da caixa rodapé */
+      --rodape-bg: rgba(0, 0, 0, 0.6);
+      --rodape-border: rgba(255,255,255,0.2);
+      --rodape-text-color: white;
+    }
+
+    /* === Estilo geral do corpo da página === */
     body {
-      font-family: Arial, sans-serif;
-      background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1350&q=80') no-repeat center center fixed;
-      background-size: cover;
-      color: white;
-      text-align: center;
-      padding: 30px;
-      margin: 0;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      backdrop-filter: brightness(0.6);
-      position: relative;
+      font-family: Arial, sans-serif; /* fonte */
+      background: var(--bg-image) no-repeat center center fixed; /* imagem de fundo fixa */
+      background-size: cover; /* cobre toda a tela */
+      color: var(--text-color); /* cor do texto */
+      text-align: center; /* centraliza o texto */
+      padding: 30px; /* espaço interno */
+      margin: 0; /* sem margem */
+      min-height: 100vh; /* altura mínima para ocupar tela toda */
+      display: flex; /* usa flexbox */
+      flex-direction: column; /* itens na vertical */
+      justify-content: flex-start; /* começo do eixo vertical */
+      backdrop-filter: brightness(0.6); /* escurece o fundo para contraste */
+      position: relative; /* para posicionar as caixas absolutas */
     }
 
-    /* Imagem de topo (ajustada com nova URL) */
+    /* === Imagem de topo === */
     img {
-      max-width: 200px;
-      margin: 20px auto 10px;
-      border-radius: 12px;
+      max-width: 200px; /* largura máxima */
+      margin: 20px auto 10px; /* margem: 20px cima, auto horizontal, 10px baixo */
+      border-radius: 12px; /* borda arredondada */
+      /* para alterar a imagem: trocar src no HTML */
     }
 
+    /* === Título principal === */
     h1 {
-      margin-bottom: 10px;
-      font-size: 2.5rem;
-      text-shadow: 1px 1px 5px rgba(0,0,0,0.7);
+      margin-bottom: 10px; /* espaçamento embaixo */
+      font-size: 2.5rem; /* tamanho da fonte */
+      text-shadow: 1px 1px 5px var(--text-shadow-color); /* sombra do texto para melhor leitura */
     }
 
+    /* === Parágrafos gerais === */
     p {
       font-size: 1.2rem;
       margin-bottom: 10px;
-      text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
+      text-shadow: 1px 1px 4px var(--text-shadow-color-p);
     }
 
-    :root {
-      --btn-bg: rgba(0, 173, 181, 0.8);
-      --btn-bg-hover: rgba(2, 136, 145, 0.9);
-    }
-
+    /* === Estilo dos botões (links) === */
     a {
-      display: block;
-      width: 25%;
-      min-width: 180px;
-      max-width: 300px;
-      margin: 10px auto;
-      padding: 15px 0;
-      background-color: var(--btn-bg);
-      color: white;
-      text-decoration: none;
-      border-radius: 8px;
-      font-weight: bold;
-      font-size: 1rem;
-      transition: background-color 0.3s;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-      text-align: center;
+      display: block; /* faz o link ocupar linha inteira */
+      width: 25%; /* ocupa 25% da largura da tela */
+      min-width: 180px; /* largura mínima para o botão */
+      max-width: 300px; /* largura máxima */
+      margin: 10px auto; /* margem em cima e baixo, centralizado */
+      padding: 15px 0; /* espaçamento vertical interno */
+      background-color: var(--btn-bg); /* cor de fundo */
+      color: var(--btn-text-color); /* cor do texto */
+      text-decoration: none; /* remove sublinhado */
+      border-radius: 8px; /* bordas arredondadas */
+      font-weight: bold; /* texto em negrito */
+      font-size: 1rem; /* tamanho da fonte */
+      transition: background-color 0.3s; /* animação suave para hover */
+      box-shadow: 0 2px 5px rgba(0,0,0,0.3); /* sombra leve */
+      text-align: center; /* texto centralizado */
+      cursor: pointer; /* cursor de mão */
     }
 
+    /* Efeito hover e foco nos botões */
     a:hover,
     a:focus {
       background-color: var(--btn-bg-hover);
       outline: none;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.5); /* sombra mais forte */
     }
 
-    /* === Caixas laterais === */
+    /* === Caixas laterais (posicionadas fixas) === */
     .caixa-lateral {
-      position: absolute;
-      top: 20%;
-      width: 200px;
-      padding: 10px;
-      background-color: rgba(0,0,0,0.5);
-      border: 1px solid rgba(255,255,255,0.3);
-      border-radius: 10px;
-      font-size: 0.95rem;
-      text-align: left;
+      position: absolute; /* posição fixa na tela */
+      top: 20%; /* posiciona a 20% do topo da tela */
+      width: 200px; /* largura fixa */
+      padding: 10px; /* espaçamento interno */
+      background-color: var(--caixa-bg); /* fundo semitransparente */
+      border: 1px solid var(--caixa-border); /* borda semitransparente */
+      border-radius: 10px; /* cantos arredondados */
+      font-size: 0.95rem; /* tamanho da fonte */
+      text-align: left; /* alinhamento do texto */
+      color: var(--caixa-text-color); /* cor do texto */
+      user-select: text; /* permite seleção do texto */
     }
 
+    /* Posicionamento da caixa esquerda */
     .esquerda {
       left: 20px;
     }
 
+    /* Posicionamento da caixa direita */
     .direita {
       right: 20px;
     }
 
-    /* === Caixa inferior (ajustada para subir ~3cm) === */
+    /* === Caixa inferior do rodapé === */
     .caixa-rodape {
-      position: absolute;
-      bottom: 30px; /* antes era 0, agora subiu 30px */
+      position: absolute; /* fixa em relação à tela */
+      bottom: 30px; /* distância de 30px do rodapé (antes era 0) */
       left: 0;
-      width: 100%;
-      padding: 10px 30px;
-      background-color: rgba(0, 0, 0, 0.6);
-      border-top: 1px solid rgba(255,255,255,0.2);
+      width: 100%; /* ocupa toda a largura da tela */
+      padding: 10px 30px; /* espaço interno */
+      background-color: var(--rodape-bg); /* fundo escuro semitransparente */
+      border-top: 1px solid var(--rodape-border); /* borda no topo da caixa */
       font-size: 1rem;
-      text-align: center;
-      box-sizing: border-box;
+      text-align: center; /* texto centralizado */
+      box-sizing: border-box; /* inclui padding na largura total */
+      color: var(--rodape-text-color);
     }
 
-    /* Explicação:
-       - "bottom: 30px" = subiu a caixa 3cm do rodapé
-       - "width: 100%" = cobre a tela inteira na horizontal
-       - "padding" = mantém espaço interno e evita encostar
-    */
   </style>
 </head>
 <body>
