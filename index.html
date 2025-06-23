@@ -3,434 +3,136 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Codificador Protegido - Mobile</title>
+  <title>Carlos GARRA  Portal Oficial</title>
   <style>
-    /* === Variáveis CSS para cores e imagens de fundo === */
+    /* === Variáveis CSS para personalização fácil === */
     :root {
-      --bg-image-login: url(https://wallpapers.com/images/hd/razer-rainbow-chroma-logo-kxnuuska3ajdi4tp.jpg);
-      --bg-image-logged: url(https://wallpapers.com/images/hd/razer-rainbow-chroma-logo-kxnuuska3ajdi4tp.jpg);
+      /* Fundo */
+      --bg-image: url(https://wallpapers.com/images/hd/razer-rainbow-chroma-logo-kxnuuska3ajdi4tp.jpg);
+      --bg-color-overlay: rgba(0,0,0,0.4); /* se quiser cor de fundo sem imagem */
       
-      --text-color: #eee;               /* cor padrão dos textos */
-      --text-color-green: #0f0;         /* verde usado para destaques */
-      --text-color-error: #f44;         /* vermelho para erro */
-      
-      --bg-overlay-login: rgba(0,0,0,0.75);    /* fundo escuro translúcido para o login */
-      --bg-overlay-panel: rgba(0,0,0,0.6);     /* fundo dos painéis laterais e links */
-      --bg-overlay-app: rgba(0,0,0,0.8);       /* fundo da área principal do app */
-      --bg-header-footer: rgba(0,0,0,0.7);     /* fundo header e footer */
-      
-      --btn-bg: #0f0;                      /* cor de fundo dos botões */
-      --btn-text-color: #111;              /* cor do texto dos botões */
-      
-      --shadow-green: rgba(0,255,0,0.6);  /* sombra verde para destaque */
+      /* Cores de texto */
+      --text-color: white;
+      --text-shadow-color: rgba(0,0,0,0.7);
+      --text-shadow-color-p: rgba(0,0,0,0.6);
+
+      /* Cores dos botões */
+      --btn-bg: rgba(0, 173, 181, 0.8);
+      --btn-bg-hover: rgba(2, 136, 145, 0.9);
+      --btn-text-color: white;
+
+      /* Cores das caixas laterais */
+      --caixa-bg: rgba(0,0,0,0.5);
+      --caixa-border: rgba(255,255,255,0.3);
+      --caixa-text-color: white;
+
+      /* Cor da caixa rodapé */
+      --rodape-bg: rgba(0, 0, 0, 0.6);
+      --rodape-border: rgba(255,255,255,0.2);
+      --rodape-text-color: white;
     }
 
-    /* === Estilo geral da página === */
+    /* === Estilo geral do corpo da página === */
     body {
-      font-family: Arial, sans-serif;       /* fonte padrão */
-      margin: 0;                            /* sem margem */
-      min-height: 100vh;                   /* altura mínima 100% da tela */
-      background: var(--bg-image-login) no-repeat center center fixed; /* imagem de fundo */
-      background-size: cover;              /* cobre toda a área */
-      color: var(--text-color);            /* cor do texto */
-      display: flex;
-      flex-direction: column;
+      font-family: Arial, sans-serif; /* fonte */
+      background: var(--bg-image) no-repeat center center fixed; /* imagem de fundo fixa */
+      background-size: cover; /* cobre toda a tela */
+      color: var(--text-color); /* cor do texto */
+      text-align: center; /* centraliza o texto */
+      padding: 30px; /* espaço interno */
+      margin: 0; /* sem margem */
+      min-height: 100vh; /* altura mínima para ocupar tela toda */
+      display: flex; /* usa flexbox */
+      flex-direction: column; /* itens na vertical */
+      justify-content: flex-start; /* começo do eixo vertical */
+      backdrop-filter: brightness(0.6); /* escurece o fundo para contraste */
+      position: relative; /* para posicionar as caixas absolutas */
     }
 
-    /* === Header e Footer === */
-    header, footer {
-      width: 100%;
-      text-align: center;
-      background-color: var(--bg-header-footer);
-      padding: 12px;
-      font-weight: bold;
-      box-sizing: border-box;
-      border-radius: 0 0 10px 10px; /* arredondar só na parte de baixo */
-      color: var(--text-color);
+    /* === Imagem de topo === */
+    img {
+      max-width: 200px; /* largura máxima */
+      margin: 20px auto 10px; /* margem: 20px cima, auto horizontal, 10px baixo */
+      border-radius: 12px; /* borda arredondada */
+      /* para alterar a imagem: trocar src no HTML */
     }
 
-    /* === Tela de login === */
-    #login {
-      background-color: var(--bg-overlay-login);
-      margin: 20px auto;
-      border-radius: 12px;
-      max-width: 350px;
-      width: 90vw;
-      padding: 25px 20px;
-      box-sizing: border-box;
-      box-shadow: 0 0 15px var(--shadow-green);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 20px;
+    /* === Título principal === */
+    h1 {
+      margin-bottom: 10px; /* espaçamento embaixo */
+      font-size: 2.5rem; /* tamanho da fonte */
+      text-shadow: 1px 1px 5px var(--text-shadow-color); /* sombra do texto para melhor leitura */
     }
 
-    /* Imagens na tela de login (esquerda e direita) */
-    #login-images {
-      display: flex;
-      justify-content: space-between;
-      width: 100%;
-      max-width: 350px;
-      gap: 15px;
+    /* === Parágrafos gerais === */
+    p {
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+      text-shadow: 1px 1px 4px var(--text-shadow-color-p);
     }
 
-    #login img {
-      width: 140px;
-      height: 250px;
-      border-radius: 15px;
-      object-fit: cover;
-      box-shadow: 0 0 10px var(--shadow-green);
+    /* === Estilo dos botões (links) === */
+    a {
+      display: block; /* faz o link ocupar linha inteira */
+      width: 25%; /* ocupa 25% da largura da tela */
+      min-width: 180px; /* largura mínima para o botão */
+      max-width: 300px; /* largura máxima */
+      margin: 10px auto; /* margem em cima e baixo, centralizado */
+      padding: 15px 0; /* espaçamento vertical interno */
+      background-color: var(--btn-bg); /* cor de fundo */
+      color: var(--btn-text-color); /* cor do texto */
+      text-decoration: none; /* remove sublinhado */
+      border-radius: 8px; /* bordas arredondadas */
+      font-weight: bold; /* texto em negrito */
+      font-size: 1rem; /* tamanho da fonte */
+      transition: background-color 0.3s; /* animação suave para hover */
+      box-shadow: 0 2px 5px rgba(0,0,0,0.3); /* sombra leve */
+      text-align: center; /* texto centralizado */
+      cursor: pointer; /* cursor de mão */
     }
 
-    /* Título na tela de login */
-    #login h2 {
-      margin: 0;
-      text-align: center;
+    /* Efeito hover e foco nos botões */
+    a:hover,
+    a:focus {
+      background-color: var(--btn-bg-hover);
+      outline: none;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.5); /* sombra mais forte */
     }
 
-    /* Campo senha */
-    #senha {
-      font-size: 22px;
-      padding: 14px;
-      border-radius: 8px;
-      border: none;
-      width: 100%;
-      max-width: 280px;
-      box-sizing: border-box;
-      text-align: center;
-      letter-spacing: 0.1em;
+    /* === Caixa inferior do rodapé === */
+    .caixa-rodape {
+      position: absolute; /* fixa em relação à tela */
+      bottom: 30px; /* distância de 30px do rodapé (antes era 0) */
+      left: 0;
+      width: 100%; /* ocupa toda a largura da tela */
+      padding: 10px 30px; /* espaço interno */
+      background-color: var(--rodape-bg); /* fundo escuro semitransparente */
+      border-top: 1px solid var(--rodape-border); /* borda no topo da caixa */
+      font-size: 1rem;
+      text-align: center; /* texto centralizado */
+      box-sizing: border-box; /* inclui padding na largura total */
+      color: var(--rodape-text-color);
     }
 
-    /* Botão entrar */
-    #btnEntrar {
-      background-color: var(--btn-bg);
-      font-weight: bold;
-      font-size: 20px;
-      padding: 14px;
-      border-radius: 8px;
-      cursor: pointer;
-      width: 100%;
-      max-width: 280px;
-      box-sizing: border-box;
-      transition: background-color 0.3s ease;
-      color: var(--btn-text-color);
-      border: none;
-    }
-
-    #btnEntrar:disabled {
-      background-color: #444;
-      cursor: not-allowed;
-    }
-
-    /* Mensagem de erro senha */
-    #msg-senha {
-      min-height: 24px;
-      color: var(--text-color-error);
-      font-weight: bold;
-      text-align: center;
-    }
-
-    /* Container principal do app (após login) */
-    #app-container {
-      display: none; /* fica oculto até login */
-      flex-direction: column;
-      flex: 1;
-      max-width: 400px;
-      margin: 20px auto;
-      width: 90vw;
-      box-sizing: border-box;
-    }
-
-    /* Header e Footer do app */
-    #app-header, #app-footer {
-      background-color: var(--bg-header-footer);
-      padding: 12px;
-      text-align: center;
-      font-size: 20px;
-      font-weight: bold;
-      color: var(--text-color-green);
-      border-radius: 10px;
-    }
-
-    /* Área principal do app */
-    #app {
-      background-color: var(--bg-overlay-app);
-      border-radius: 10px;
-      box-shadow: 0 0 25px rgba(0,255,0,0.5);
-      padding: 15px;
-      color: var(--text-color-green);
-      font-family: monospace;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      box-sizing: border-box;
-    }
-
-    /* Labels dos campos */
-    label {
-      font-weight: bold;
-      font-size: 16px;
-    }
-
-    /* Áreas de texto */
-    textarea {
-      width: 100%;
-      min-height: 120px;
-      font-size: 18px;
-      padding: 10px;
-      background: #222;
-      color: var(--text-color-green);
-      border: none;
-      border-radius: 8px;
-      resize: vertical;
-    }
-
-    /* Container dos botões */
-    #botoes {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      margin-top: 10px;
-    }
-
-    /* Botões do app */
-    .app-btn {
-      background: var(--btn-bg);
-      color: var(--btn-text-color);
-      font-weight: bold;
-      font-size: 18px;
-      padding: 14px;
-      border-radius: 8px;
-      cursor: pointer;
-      border: none;
-      transition: background-color 0.2s ease;
-    }
-    .app-btn:active {
-      background: #0c0;
-    }
-
-    /* Mensagem temporária */
-    #mensagem {
-      min-height: 24px;
-      font-weight: bold;
-      text-align: center;
-      margin-top: 10px;
-    }
-
-    /* Painéis laterais de dicas */
-    .side-panel {
-      background-color: var(--bg-overlay-panel);
-      border-radius: 10px;
-      padding: 12px;
-      color: var(--text-color-green);
-      font-size: 14px;
-      margin-top: 15px;
-      box-sizing: border-box;
-    }
-    .side-panel .texto-fixo {
-      white-space: pre-wrap;
-    }
-    .side-panel img {
-      width: 100%;
-      max-height: 150px;
-      border-radius: 10px;
-      object-fit: cover;
-      margin-top: 10px;
-    }
-
-    /* Links sociais estilo botão vertical */
-    .social-links {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      margin-top: 20px;
-      padding: 10px;
-      background-color: var(--bg-overlay-panel);
-      border-radius: 10px;
-      max-width: 350px;
-      text-align: center;
-    }
-    .social-links a {
-      color: var(--text-color-green);
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 18px;
-      padding: 10px;
-      background: #111;
-      border-radius: 8px;
-      display: block;
-      transition: background-color 0.3s ease;
-    }
-    .social-links a:hover {
-      background: #222;
-    }
   </style>
 </head>
 <body>
-  <header>Bem Vindo ao Codificador Criado Por Carlos GARRA</header>
+  <!-- REMOVIDO: Caixa esquerda -->
+  <!-- REMOVIDO: Caixa direita -->
 
-  <div id="login">
-    <div id="login-images">
-      <img src="https://i.pinimg.com/564x/0d/2a/57/0d2a57609f18177d72afe09d83eea568.jpg" alt="Imagem esquerda" />
-      <img src="https://i.pinimg.com/236x/7a/e3/25/7ae325b74152b106ad8c082295c38799.jpg" alt="Imagem direita" />
-    </div>
-    <h2>Digite a senha para acessar.</h2>
-    <input id="senha" type="password" placeholder="Senha" />
-    <button id="btnEntrar" onclick="verificarSenha()" disabled>Entrar</button>
-    <div id="msg-senha"></div>
-
-    <div class="social-links">
-      <a href="https://wa.me/SEUNUMERO" target="_blank" rel="noopener noreferrer">📲 WhatsApp</a>
-      <a href="https://youtube.com/SEUCANAL" target="_blank" rel="noopener noreferrer">▶️ YouTube</a>
-      <a href="https://instagram.com/SEUINSTAGRAM" target="_blank" rel="noopener noreferrer">📸 Instagram</a>
-      <a href="https://discord.gg/nka5dSDywZ" target="_blank" rel="noopener noreferrer">🟣 Discord</a>
-    </div>
+  <!-- Caixa inferior (agora mais alta) -->
+  <div class="caixa-rodape">
+    📣 Aviso importante aqui no rodapé — edite essa mensagem direto no HTML.
   </div>
 
-  <div id="app-container">
-    <div id="app-header">Painel Codificador Protegido</div>
+  <!-- Imagem de topo (substituída só para teste) -->
+  <img src="https://wallpapers.com/images/hd/let-s-play-gamer-phone-qc9jga2a1yf6ry71.jpg" alt="Imagem de teste" />
 
-    <div class="side-panel">
-      <div class="texto-fixo">
-        Use letras maiúsculas para melhor codificação.<br>
-        Evite caracteres especiais.
-      </div>
-      <div class="texto-fixo">
-        Mantenha seu texto simples e claro.<br>
-        Não use números se possível.
-      </div>
-      <img src="https://img.freepik.com/vetores-premium/placa-de-circuito-de-fundo-de-processador-de-chip-de-tecnologia-abstrata-e-html-code3d-ilustracao-azul-vetor-de-fundo-de-tecnologia_115579-1744.jpg" alt="Dicas imagem esquerda" />
-    </div>
-
-    <div id="app">
-      <label for="normal">Texto normal:</label>
-      <textarea id="normal" oninput="codificar()"></textarea>
-
-      <label for="codificado">Texto codificado:</label>
-      <textarea id="codificado" oninput="decodificar()"></textarea>
-
-      <div id="botoes">
-        <button class="app-btn" onclick="copiarTexto('normal')">Copiar Texto Normal</button>
-        <button class="app-btn" onclick="copiarTexto('codificado')">Copiar Texto Codificado</button>
-        <button class="app-btn" onclick="limparCampos()">Limpar Campos</button>
-      </div>
-
-      <div id="mensagem"></div>
-    </div>
-
-    <div class="side-panel">
-      <div class="texto-fixo">
-        Sempre faça backup do seu texto.<br>
-        Use fontes monoespaçadas para leitura.
-      </div>
-      <div class="texto-fixo">
-        Revise o texto antes de codificar.<br>
-        Evite copiar texto com espaços extras.
-      </div>
-      <img src="https://img.freepik.com/fotos-premium/uma-placa-de-computador-com-uma-placa-de-circuito-que-possui-uma-placa-de-circuito-em-azul-e-verde_895799-7058.jpg" alt="Dicas imagem 2" />
-    </div>
-
-    <div class="social-links">
-      <a href="https://wa.me/SEUNUMERO" target="_blank" rel="noopener noreferrer">📲 WhatsApp</a>
-      <a href="https://youtube.com/SEUCANAL" target="_blank" rel="noopener noreferrer">▶️ YouTube</a>
-      <a href="https://instagram.com/SEUINSTAGRAM" target="_blank" rel="noopener noreferrer">📸 Instagram</a>
-      <a href="https://discord.gg/nka5dSDywZ" target="_blank" rel="noopener noreferrer">🟣 Discord</a>
-    </div>
-
-    <div id="app-footer">© 2025 Sistema protegido por senha</div>
-  </div>
-
-  <footer>© 2025 Carlos GARRA</footer>
-
-  <script>
-    const senhaCorreta = "201066";
-    const senhaInput = document.getElementById("senha");
-    const btnEntrar = document.getElementById("btnEntrar");
-    const loginDiv = document.getElementById("login");
-    const appContainer = document.getElementById("app-container");
-    const normalTextarea = document.getElementById("normal");
-    const codificadoTextarea = document.getElementById("codificado");
-    const mensagemDiv = document.getElementById("mensagem");
-
-    senhaInput.addEventListener("input", () => {
-      btnEntrar.disabled = senhaInput.value.trim() === "";
-    });
-
-    senhaInput.addEventListener("keydown", e => {
-      if (e.key === "Enter" && !btnEntrar.disabled) verificarSenha();
-    });
-
-    function verificarSenha() {
-      if (senhaInput.value === senhaCorreta) {
-        loginDiv.style.display = "none";
-        appContainer.style.display = "flex";
-        document.body.style.backgroundImage = "var(--bg-image-logged)";
-        normalTextarea.focus();
-      } else {
-        document.getElementById("msg-senha").textContent = "Senha incorreta!";
-        senhaInput.value = "";
-        btnEntrar.disabled = true;
-        senhaInput.focus();
-      }
-    }
-
-    const tabela = {
-      A:"P",B:"Q",C:"M",D:"L",E:"X",F:"Z",G:"Y",H:"V",I:"N",J:"W",
-      K:"O",L:"R",M:"S",N:"T",O:"U",P:"A",Q:"B",R:"C",S:"D",T:"E",
-      U:"F",V:"G",W:"H",X:"I",Y:"J",Z:"K",
-      "0":"ZZ","1":"YY","2":"XX","3":"WW","4":"VV","5":"UU","6":"TT","7":"SS","8":"RR","9":"QQ"
-    };
-
-    const reversa = {};
-    Object.entries(tabela).forEach(([k, v]) => reversa[v] = k);
-    const chaves = Object.keys(reversa).sort((a, b) => b.length - a.length);
-    const regex = new RegExp(chaves.map(k => k.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("|"), "g");
-
-    function codificar() {
-      const texto = normalTextarea.value.toUpperCase();
-      let resultado = "";
-      for (let c of texto) {
-        resultado += tabela[c] || c;
-      }
-      codificadoTextarea.value = resultado;
-      mostrarMensagem("Texto codificado!");
-    }
-
-    function decodificar() {
-      const texto = codificadoTextarea.value;
-      const resultado = texto.replace(regex, m => reversa[m] || m);
-      normalTextarea.value = resultado;
-      mostrarMensagem("Texto decodificado!");
-    }
-
-    function copiarTexto(id) {
-      const texto = document.getElementById(id).value;
-      const textareaTemp = document.createElement("textarea");
-      textareaTemp.value = texto;
-      document.body.appendChild(textareaTemp);
-      textareaTemp.select();
-      textareaTemp.setSelectionRange(0, 99999);
-      try {
-        const sucesso = document.execCommand("copy");
-        mostrarMensagem(sucesso ? "Texto copiado!" : "Erro ao copiar");
-      } catch {
-        mostrarMensagem("Erro ao copiar");
-      }
-      document.body.removeChild(textareaTemp);
-    }
-
-    function limparCampos() {
-      normalTextarea.value = "";
-      codificadoTextarea.value = "";
-      mostrarMensagem("Campos limpos!");
-    }
-
-    function mostrarMensagem(msg) {
-      mensagemDiv.textContent = msg;
-      setTimeout(() => mensagemDiv.textContent = "", 2000);
-    }
-
-    window.onload = () => senhaInput.focus();
-  </script>
+  <h1>Mensagem em Código</h1>
+  <p>Escolha a versão:</p>
+  <a href="mensagempc.html">Versão para PC</a>
+  <a href="mensagemcel.html">Versão para Celular</a>
+  <br /><br />
+  <a href="https://discord.gg/nka5dSDywZ" target="_blank" rel="noopener noreferrer">Entrar no Discord</a>
 </body>
 </html>
